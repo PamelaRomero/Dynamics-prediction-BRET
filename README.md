@@ -4,7 +4,7 @@ Paper sent to *CMSB 2024:  20th conference on Computational Intelligence methods
 
 ### Multi-step model prediction:
 
-  ![Multi-step model prediction](Figures/Multi_time-steps.pdf) 
+  ![Multi-step model prediction](Figures/Multi_time-steps.png) 
 
 
 ### Decision Tree prediction:
