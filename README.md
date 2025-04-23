@@ -2,11 +2,6 @@
 
 Paper sent to *CMSB 2024:  20th conference on Computational Intelligence methods for Bioinformatics and Biostatistics*
 
-
-  
-  <p align="center">
-  <img src="Figures/Figure_1.png" width="550" height="200">
-  </p>
  
   ![Decision Tree prediction](Figures/Figure_2.png) 
 
