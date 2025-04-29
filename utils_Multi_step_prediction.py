@@ -352,7 +352,7 @@ def FIMDI_1(forest):
     ax.set_ylabel("Mean decrease in impurity")
     fig.tight_layout()
     plt.grid()
-    plt.savefig("/home/pamela/Documents/FRANCIA/GitHub/NewNewVersionGitHub/Results/Multi_time_step_model/FIMDI.png", dpi=200)
+    plt.savefig("/home/.../Results/Multi_time_step_model/FIMDI.png", dpi=200)
 
 
 
