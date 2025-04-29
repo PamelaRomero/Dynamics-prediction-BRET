@@ -115,7 +115,7 @@ def Plott(y, time, time_y, x, Ypred, name_list, folder_name):
 
 
 start = time.time()
-path = '/home/pamela/Documents/FRANCIA/GitHub/NewNewVersionGitHub/Datanew'
+path = '/home/.../Datanew'
 data, metadata, names = Dataset(path) 
 
 new_data = Nivelar_min(data)
