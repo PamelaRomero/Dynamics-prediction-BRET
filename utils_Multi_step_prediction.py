@@ -290,17 +290,6 @@ def FormaV(vector):
         return l2  
 
 
-def Acc2(l1, l2): 
-    mape_sum, mape = 0, 0
-    for i in range(len(l1)):
-        mape = MAPEE(l1[i], l2[i])
-        mape_sum = mape_sum + mape
-        mape = 0
-    mape_ofi = round(mape_sum / len(l1),4)
-    print("mape: ", mape_ofi)
-    print('acc: ', 100.0 - mape_ofi)   
-
-
 def MAE(gt, pred):
     lista = list()
     for i in range(len(gt)):
@@ -315,23 +304,9 @@ def MSE(gt, pred):
     print('Mean Squared Error (MSE):', round(sum(lista)/len(lista),4))
 
 
-def MAPEE(y_true, y_pred):
-    #REFERENCE: https://stackoverflow.com/questions/47648133/mape-calculation-in-python
-    actual = np.asarray(y_true) 
-    predicted = np.asarray(y_pred)
-    res = np.empty(actual.shape)
-    for j in range(actual.shape[0]):
-        if actual[j] != 0:
-            res[j] = (actual[j] - predicted[j]) / actual[j]
-        else:
-            res[j] = predicted[j] / np.mean(actual)
-    return np.mean(np.abs(res)) * 100
-
-
 def Metrics(gt, pred):
     MAE(gt, pred)
-    MSE(gt, pred)
-    Acc2(gt, pred)  
+    MSE(gt, pred)  
   
 
 def FIMDI_1(forest):
