@@ -128,7 +128,7 @@ print('listData_tst: ', len(listData_tst))
 
 D, L, R, P, cant = 1, 1, 1, 1, 0.5
 
-folder = "/home/pamela/Documents/FRANCIA/GitHub/NewNewVersionGitHub/Multi_time_step_model/{}/".format(int(cant*100))
+folder = "/home/.../Multi_time_step_model/{}/".format(int(cant*100))
 
 print("D:",D, "L:",L,", R:",R,", P:",P,", %:",cant)
 Principal(listData_trn, metaData_trn, listData_val, metaData_val, listData_tst, metaData_tst, val_name, tst_name, trn_name, D, L, R, P, cant, folder, start)
