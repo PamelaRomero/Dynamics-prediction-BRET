@@ -319,3 +319,72 @@ def Graph(y, time, time_y, x, Ypred, name_list, folder_name):
         plt.xlabel('Time')
         plt.savefig("{}/fig_{}.png".format(folder_name, p), dpi=200)
         plt.close()  
+
+
+def area_under_curve(y_tst, Ypred_tst, time_y_tst):
+    auc_pred_total = 0
+    auc_truth_total = 0
+
+    auc_pred_total_trapz = 0
+    auc_truth_total_trapz = 0
+
+    auc_pred_total_simpson = 0
+    auc_truth_total_simpson = 0
+
+    for i in range(len(time_y_tst)):
+        # REFERENCE: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html
+        auc_pred = round(auc(time_y_tst[i], Ypred_tst[i]))
+        auc_truth = round(auc(time_y_tst[i], y_tst[i]))
+        diff_auc = np.abs(auc_truth - auc_pred)
+        
+        # REFERENCE: https://numpy.org/devdocs/reference/generated/numpy.trapezoid.html
+        auc_pred_trapz = round(np.trapezoid(Ypred_tst[i], time_y_tst[i], dx=1))
+        auc_truth_trapz = round(np.trapezoid(y_tst[i], time_y_tst[i], dx=1))
+        diff_trapz = round(np.abs(auc_truth_trapz - auc_pred_trapz))
+
+        # REFERENCIA: https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
+        auc_pred_simpson = round(integrate.simpson(Ypred_tst[i], time_y_tst[i]))
+        auc_truth_simpson = round(integrate.simpson(y_tst[i], time_y_tst[i]))
+        diff_simpson = round(np.abs(auc_truth_simpson - auc_pred_simpson))
+
+        auc_pred_total = auc_pred_total + auc_pred
+        auc_truth_total = auc_truth_total + auc_truth
+
+        auc_pred_total_trapz = auc_pred_total_trapz + auc_pred_trapz
+        auc_truth_total_trapz = auc_truth_total_trapz + auc_truth_trapz
+
+        auc_pred_total_simpson = auc_pred_total_simpson + auc_pred_simpson
+        auc_truth_total_simpson = auc_truth_total_simpson + auc_truth_simpson
+
+        if (auc_pred == auc_pred_trapz) and (auc_pred == auc_pred_simpson) and (auc_truth == auc_truth_trapz) and (auc_truth == auc_truth_simpson):
+            #print('AUC Pred: ', auc_pred, ' Truth: ', auc_truth, ' Difference: ', diff_auc, ' -- AUC trapezoidal Pred: ', auc_pred_trapz, ' Truth: ', auc_truth_trapz, ' Difference: ', diff_trapz, ' -- AUC simpson Pred: ', auc_pred_simpson, ' Truth: ', auc_truth_simpson, ' Difference: ', diff_simpson)
+            pass
+        else:  
+            #print('Attention')
+            #print('Attention -- AUC Pred: ', auc_pred, ' Truth: ', auc_truth, ' Difference: ', diff_auc, ' -- AUC trapezoidal Pred: ', auc_pred_trapz, ' Truth: ', auc_truth_trapz, ' Difference: ', diff_trapz, ' -- AUC simpson Pred: ', auc_pred_simpson, ' Truth: ', auc_truth_simpson, ' Difference: ', diff_simpson)
+            pass
+
+    mean_auc_pred_total = round(auc_pred_total/len(time_y_tst), 2)
+    mean_auc_truth_total = round(auc_truth_total/len(time_y_tst), 2)
+    diff_total = round(np.abs(mean_auc_truth_total - mean_auc_pred_total), 2)
+
+    mean_auc_pred_total_trapz = round(auc_pred_total_trapz/len(time_y_tst), 2)
+    mean_auc_truth_total_trapz = round(auc_truth_total_trapz/len(time_y_tst), 2)
+    diff_total_trapz = round(np.abs(mean_auc_truth_total_trapz - mean_auc_pred_total_trapz), 2)
+
+    mean_auc_pred_total_simpson = round(auc_pred_total_simpson/len(time_y_tst), 2)
+    mean_auc_truth_total_simpson = round(auc_truth_total_simpson/len(time_y_tst), 2)
+    diff_total_simpson = round(np.abs(mean_auc_truth_total_simpson - mean_auc_pred_total_simpson), 2)
+
+    print('Average auc pred: ', mean_auc_pred_total, ' - trapezoidal: ', mean_auc_pred_total_trapz , ' - simpson: ', mean_auc_pred_total_simpson)
+    print('Average auc truth: ', mean_auc_truth_total, ' - trapezoidal: ', mean_auc_truth_total_trapz , ' - simpson: ', mean_auc_truth_total_simpson)
+    print('Average difference: ', diff_total, ' - trapezoidal: ', diff_total_trapz , ' - simpson: ', diff_total_simpson)
+
+
+def time_weighting_root_mean_squared_error(y_truth, y_predict, timee):
+    weights_list = list()
+    weights = np.arange(0, 1.0, 0.03125)
+    for i in range(len(timee)):
+        weights_list.append(weights)
+    rmse = np.sqrt(np.mean(weights_list * ((y_predict - y_truth)**2)) / np.sum(weights_list)) 
+    print('Time-weighting rmse: ', round(rmse,5))
