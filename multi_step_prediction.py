@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
 
 from utils_multi_step_prediction import Dataset, Level_min, SplitTrainValidTest, Data, Normalization, NormalizeMinMaxTest  
-from utils_multi_step_prediction import NormalizeMinMax, ShapeY, Vector, GridSearch, Metrics, Graph
+from utils_multi_step_prediction import NormalizeMinMax, ShapeY, Vector, GridSearch, Metrics, Graph, area_under_curve, time_weighting_root_mean_squared_error
 
    
 
@@ -52,14 +52,20 @@ regressor.fit(vec_trn, y_trn)
 print("-------------Train-RF------------")
 Ypred_trn = regressor.predict(vec_trn)
 Metrics(y_trn, Ypred_trn)
+area_under_curve(y_trn, Ypred_trn, time_y_trn)
+time_weighting_root_mean_squared_error(y_trn, Ypred_trn, time_y_trn)
 
 print("-------------VAL-RF------------")
 Ypred_val = regressor.predict(vec_val) 
 Metrics(y_val, Ypred_val)
+area_under_curve(y_val, Ypred_val, time_y_val)
+time_weighting_root_mean_squared_error(y_val, Ypred_val, time_y_val)
 
 print("-------------Test-RF------------")
 Ypred_tst = regressor.predict(vec_tst) 
 Metrics(y_tst, Ypred_tst)
+area_under_curve(y_tst, Ypred_tst, time_y_tst)
+time_weighting_root_mean_squared_error(y_tst, Ypred_tst, time_y_tst)
 
 end = time.time()
 print('Time: ', end-start)
