@@ -227,7 +227,7 @@ vec_trn_5, vec_tst_5, vec_y_trn_5, vec_y_tst_5, vec_time_trn_5, vec_time_tst_5 =
 
 regressor = DecisionTreeRegressor(max_depth=10, min_samples_leaf=1, random_state=0)
 #regressor = RandomForestRegressor(n_estimators=10, max_depth=10, min_samples_leaf=1, random_state=0)
-#regressor = xgb.XGBRegressor()  #n_estimators=10, max_depth=10
+#regressor = xgb.XGBRegressor(max_depth=3, n_estimators=10, learning_rate=0.5)
 
 Ypred_trn1, Ypred_tst1, regressor1, mae_trn1, mae_tst1 = metrics_mae_auc_rmse(regressor, vec_trn_1, vec_y_trn_1, vec_tst_1, vec_y_tst_1, vec_time_trn_1, vec_time_tst_1)
 Ypred_trn2, Ypred_tst2, regressor2, mae_trn2, mae_tst2 = metrics_mae_auc_rmse(regressor, vec_trn_2, vec_y_trn_2, vec_tst_2, vec_y_tst_2, vec_time_trn_2, vec_time_tst_2)
