@@ -47,6 +47,7 @@ vec_tst = np.array(Vector(time_tst, x_data_tst, D_tst, L_tst, R_tst, P_tst), dty
     
 #regressor = DecisionTreeRegressor(max_depth=10, min_samples_leaf=1, random_state=0)
 regressor = RandomForestRegressor(n_estimators=10, max_depth=10, min_samples_leaf=1, random_state=0)
+#regressor = xgb.XGBRegressor(max_depth=3, n_estimators=10, learning_rate=0.5)
 regressor.fit(vec_trn, y_trn)
     
 print("-------------Train-RF------------")
