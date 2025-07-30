@@ -1,6 +1,5 @@
-# Machine Learning Models to Predict the Behaviour of Dynamic Intracellular Signalling Processes
+# Computational Prediction of Intracellular Signaling Behavior via Machine Learning
 
-Short paper accepted in the *CIBB 2025:  20th conference on Computational Intelligence methods for Bioinformatics and Biostatistics*
 
 
  
