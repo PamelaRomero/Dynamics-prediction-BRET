@@ -47,7 +47,6 @@ vec_tst = np.array(Vector(time_tst, x_data_tst, D_tst, L_tst, R_tst, P_tst), dty
     
 #regressor = DecisionTreeRegressor(max_depth=10, min_samples_leaf=1, random_state=0)
 regressor = RandomForestRegressor(n_estimators=10, max_depth=10, min_samples_leaf=1, random_state=0)
-#regressor = xgb.XGBRegressor(max_depth=3, n_estimators=10, learning_rate=0.5)
 regressor.fit(vec_trn, y_trn)
     
 print("-------------Train-RF------------")
@@ -81,3 +80,4 @@ np.save(folder +'tst_name_{}.npy'.format(int(percentage*100)), tst_name)
 Graph(y_val, time_val, time_y_val, x_data_val, Ypred_val, val_name, folder + "Val")
 Graph(y_tst, time_tst, time_y_tst, x_data_tst, Ypred_tst, tst_name, folder + "Test")
 Graph(y_trn, time_trn, time_y_trn, x_data_trn, Ypred_trn, trn_name, folder + "Train")
+
