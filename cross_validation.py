@@ -2,7 +2,6 @@ import numpy as np
 import time
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
-import xgboost as xgb
 from sklearn.metrics import auc
 from scipy import integrate
 from utils_multi_step_prediction import Dataset, Level_min, Data, Normalization, NormalizeMinMaxTest, NormalizeMinMax, ShapeY, Vector 
@@ -239,5 +238,6 @@ print('Time: ', end-start)
 
 print('Average MAE Train: ', (mae_trn1 + mae_trn2 + mae_trn3 + mae_trn4 + mae_trn5) / 5)
 print('Average MAE Test: ', (mae_tst1 + mae_tst2 + mae_tst3 + mae_tst4 + mae_tst5) / 5)
+
 
 
